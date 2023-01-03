@@ -24,6 +24,28 @@ to modern browsers rendering Unicode correctly; command-line shells do not alway
 ## Client for TraceInput
 
 This application also contains a client that can call the TraceInput flow to show Unicode data being sent
-as a request. The TraceInput flow will print out JSON and BLOB forms of the data.
+as a request. The TraceInput flow will print out JSON and BLOB forms of the data, which should contain the
+UTF-8 sequence `e284a2` for the TM symbol. The flow looks as follows:
 
 ![flow diagram](JSONHTTPClientForTraceInputFlow.png)
+
+and can be invoked with
+```
+curl http://localhost:7800/triggerJSONHTTPClient
+```
+to call the server flow and print the expected output of `{"tmSymbol":"™"}` (which may not 
+print correctly on the curl output if the shell is not configured to handle Unicode). The server
+console output should show the correct hex in the BLOB data:
+```
+===== Input BLOB =====
+
+( ['none' : 0x1ee9a2f5840]
+  (0x03000000:NameValue):UnknownParserName = '' (CHARACTER)
+  (0x03000000:NameValue):BLOB              = X'7b22746d53796d626f6c223a22e284a2227d' (BLOB)
+)
+```
+where the expected hex sequence can be seen.
+
+This client is a much simpler way to send Unicode than putting the Unicode data on the
+command line, but it is also possible to use curl with a file; see the [TraceInput README](/TraceInput/README.md)
+for a description of how to do this.
