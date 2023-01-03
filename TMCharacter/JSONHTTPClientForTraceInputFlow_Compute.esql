@@ -1,0 +1,20 @@
+
+
+CREATE COMPUTE MODULE JSONHTTPClientForTraceInputFlow_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		SET OutputRoot.Properties = InputProperties;
+		SET OutputRoot.Properties.CodedCharSetId = 1208; -- This number is the codepage of the JSON sent to the server 
+		SET OutputRoot.Properties.ContentType = 'application/json'; -- JSON defaults to utf-8
+		
+		-- Unicode TM symbol 2122 is the byte sequence E2 84 A2 in utf-8 (codepage 1208).
+		-- See https://codepoints.net/U+2122 (or other similar sites) for information on
+		-- the different byte sequences for this character.
+		DECLARE tmCharacterAsBinary BLOB X'E284A2';
+		DECLARE tmCharacter CHARACTER CAST(tmCharacterAsBinary AS CHARACTER CCSID 1208);
+		
+		SET OutputRoot.JSON.Data.tmSymbol = tmCharacter;
+		
+		RETURN TRUE;
+	END;
+END MODULE;

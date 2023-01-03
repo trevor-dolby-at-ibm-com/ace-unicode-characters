@@ -1,0 +1,10 @@
+
+
+CREATE COMPUTE MODULE JSONHTTPServerFlow_AsBitstreamToBLOB
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		SET OutputRoot = InputRoot;
+		SET Environment.inputAsBLOB = ASBITSTREAM(OutputRoot.JSON CCSID OutputRoot.Properties.CodedCharSetId);
+		RETURN TRUE;
+	END;
+END MODULE;
