@@ -15,6 +15,7 @@ To try this demo out using an ACE server:
 1) Clone this repo using the ACE v12 toolkit Git perspective, making sure to select the "Import all existing Eclipse projects after clone finishes" checkbox on the "Clone Git Repository" dialog page.
 2) Deploy the TraceInput application to an ACE server using mqsibar, the toolkit, or ibmint.
 3) Send JSON data to `http://localhost:7800/jsonHTTPTraceAsJSON` to see it printed out as JSON and BLOB to the server console.
+4) Send any data to `http://localhost:7800/jsonHTTPTraceAsBLOB` to see it printed out as hex BLOB data to the server console.
 
 ## Sending Unicode data to the flow using a file
 
@@ -63,11 +64,11 @@ actually gets sent as character value 99 on the wire due to codepage issues on t
 ![unicode-send-curl-server-windows](unicode-send-curl-server-windows.png)
 
 and in fact when the server flow returns the data sent to it, the curl command outputs
-a replacement character (circled in red in the curl command picture). USing the curl `--data-binary`
-option results in the same data being sent.
+a replacement character (circled in red in the curl command picture). Using the curl
+`--data-binary` option results in the same issue.
 
 Using a file to contain Unicode characters to be sent is the safest way to test Unicode
-handling; these files can be edited using most editors, including vscode. ACE flows can
+handling; these files can be edited using many editors, including vscode. ACE flows can
 also safely generate Unicode data: see the [TMCharacter README](/TMCharacter/README.md)
 for a client flow that can be triggered by curl and calls TraceInput with Unicode data.
 
@@ -101,6 +102,7 @@ X'c07f8582838489837f7a7fa399a4857fd025'
 
 ' from trace node 'JSONHTTPServerFlow.TraceJSON'.
 ```
+with the BLOB hex showing the non-ASCII values sent on the wire.
 
 This is a highly unusual scenario, but other (simpler) codepages such as latin-1 can
 also be used as long as the client sends the correct "charset=" value in the Content-Type header.
