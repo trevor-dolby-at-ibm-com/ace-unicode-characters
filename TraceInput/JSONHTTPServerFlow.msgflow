@@ -15,7 +15,7 @@
       <nodes xmi:type="ComIbmTrace.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_3" location="456,157" destination="localError" pattern="&#xD;&#xA;===== Input headers =====&#xD;&#xA;&#xD;&#xA;Properties.CodedCharSetId: ${Root.Properties.CodedCharSetId}&#xD;&#xA;HTTPInputHeader.Content-Length: ${Root.HTTPInputHeader.&quot;Content-Length&quot;}&#xD;&#xA;HTTPInputHeader.Content-Type: ${Root.HTTPInputHeader.&quot;Content-Type&quot;}&#xD;&#xA;&#xD;&#xA;===== Input BLOB =====&#xD;&#xA;&#xD;&#xA;${Root.BLOB}&#xD;&#xA;">
         <translation xmi:type="utility:ConstantString" string="TraceBLOB"/>
       </nodes>
-      <nodes xmi:type="ComIbmWSInput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_4" location="71,162" URLSpecifier="/jsonHTTPTraceAsBLOB" messageDomainProperty="BLOB" faultFormat="JSON">
+      <nodes xmi:type="ComIbmWSInput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_4" location="69,161" URLSpecifier="/jsonHTTPTraceAsBLOB" messageDomainProperty="BLOB" faultFormat="JSON">
         <translation xmi:type="utility:ConstantString" string="HTTP BLOB Input"/>
       </nodes>
       <nodes xmi:type="ComIbmTrace.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_5" location="454,62" destination="localError" pattern="&#xD;&#xA;===== Input headers =====&#xD;&#xA;&#xD;&#xA;Properties.CodedCharSetId: ${Root.Properties.CodedCharSetId}&#xD;&#xA;HTTPInputHeader.Content-Length: ${Root.HTTPInputHeader.&quot;Content-Length&quot;}&#xD;&#xA;HTTPInputHeader.Content-Type: ${Root.HTTPInputHeader.&quot;Content-Type&quot;}&#xD;&#xA;&#xD;&#xA;===== Input JSON =====&#xD;&#xA;&#xD;&#xA;${Root.JSON}&#xD;&#xA;&#xD;&#xA;===== Input JSON as BLOB =====&#xD;&#xA;&#xD;&#xA;${Environment.inputAsBLOB}&#xD;&#xA;">
